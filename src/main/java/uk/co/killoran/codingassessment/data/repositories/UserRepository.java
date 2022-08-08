@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import uk.co.killoran.codingassessment.data.UserLifetime;
 import uk.co.killoran.codingassessment.data.UserQuery;
 import uk.co.killoran.codingassessment.data.UserUpdate;
+import uk.co.killoran.codingassessment.domain.MutableUser;
 import uk.co.killoran.codingassessment.domain.User;
 import uk.co.killoran.codingassessment.domain.UserData;
 
@@ -29,26 +30,13 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>, UserLif
     @Transactional
     @Override
     default User create(UserData userData) {
-        return this.save(new UserEntity(null,
-                                        userData.getTitle(),
-                                        userData.getFirstName(),
-                                        userData.getSurname(),
-                                        userData.getDob(),
-                                        userData.getJobTitle(),
-                                        null));
+        return this.save(new UserEntity(userData));
     }
 
     @Transactional
     @Override
     default User update(User user) {
-        return this.findById(user.getId()).map(usr -> {
-            usr.setTitle(user.getTitle());
-            usr.setFirstName(user.getFirstName());
-            usr.setSurname(user.getSurname());
-            usr.setDob(user.getDob());
-            usr.setJobTitle(user.getJobTitle());
-            return usr;
-        }).orElse(null);
+        return this.findById(user.getId()).map(usr -> usr.setUserData(user)).orElse(null);
     }
 
     @Transactional
