@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS Users;
 CREATE TABLE Users (
-    id INT PRIMARY KEY,
+    id IDENTITY PRIMARY KEY,
     title VARCHAR(255),
     first_name VARCHAR(255),
     surname VARCHAR(255),

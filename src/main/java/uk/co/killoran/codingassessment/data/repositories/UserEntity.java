@@ -18,7 +18,7 @@ import java.time.ZoneOffset;
 @Table(name = "Users")
 public class UserEntity implements MutableUser {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column()
     private String title;
