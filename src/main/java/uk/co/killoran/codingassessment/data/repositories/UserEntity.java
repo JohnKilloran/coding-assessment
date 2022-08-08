@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @Setter
 @Getter
