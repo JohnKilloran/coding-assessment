@@ -10,7 +10,7 @@ import uk.co.killoran.codingassessment.domain.User;
 
 import java.util.List;
 
-@RestController("query")
+@RestController("/query")
 public class UserQueryController {
 
     private final UserQuery query;
@@ -19,7 +19,7 @@ public class UserQueryController {
         this.query = query;
     }
 
-    @GetMapping("/api/users/{id}")
+    @GetMapping("/api/users/id/{id}")
     public ResponseEntity<User> findById(@PathVariable("id") Long id) {
         try {
             return query.findByKey(id).map(u -> new ResponseEntity<>(u, HttpStatus.OK))
@@ -29,7 +29,7 @@ public class UserQueryController {
         }
     }
 
-    @GetMapping("/api/users/{firstName}")
+    @GetMapping("/api/users/firstname/{firstName}")
     public ResponseEntity<List<User>> findByFirstName(@PathVariable("firstName") String firstName) {
         try {
             return new ResponseEntity<>(query.findByFirstName(firstName), HttpStatus.OK);
@@ -38,7 +38,7 @@ public class UserQueryController {
         }
     }
 
-    @GetMapping("/api/users/{surname}")
+    @GetMapping("/api/users/surname/{surname}")
     public ResponseEntity<List<User>> findBySurname(@PathVariable("surname") String surname) {
         try {
             return new ResponseEntity<>(query.findBySurname(surname), HttpStatus.OK);
