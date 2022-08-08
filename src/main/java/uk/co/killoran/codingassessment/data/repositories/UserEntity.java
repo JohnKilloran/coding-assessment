@@ -1,18 +1,19 @@
 package uk.co.killoran.codingassessment.data.repositories;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import uk.co.killoran.codingassessment.domain.MutableUser;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
-@Data
 @AllArgsConstructor
-@NoArgsConstructor
+@ToString
+@Setter
+@Getter
+@EqualsAndHashCode
 @Entity
 @Table(name = "Users")
 public class UserEntity implements MutableUser {
@@ -30,6 +31,10 @@ public class UserEntity implements MutableUser {
     @Column()
     private String jobTitle;
     @Column(nullable = false, updatable = false)
-    @CreationTimestamp
     private LocalDateTime createStamp;
+
+    @PrePersist
+    void createStamp() {
+        this.createStamp = LocalDateTime.now(ZoneOffset.UTC);
+    }
 }

@@ -12,5 +12,4 @@ class CodingAssessmentApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
