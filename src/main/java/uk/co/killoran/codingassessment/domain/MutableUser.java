@@ -1,7 +1,6 @@
 package uk.co.killoran.codingassessment.domain;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import uk.co.killoran.codingassessment.data.repositories.UserEntity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -21,7 +21,7 @@ public class UserUpdateController {
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         try {
             User updated = userUpdate.update(user);
-            return new ResponseEntity<>(user, updated == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
+            return new ResponseEntity<>(updated, updated == null ? HttpStatus.NOT_FOUND : HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
