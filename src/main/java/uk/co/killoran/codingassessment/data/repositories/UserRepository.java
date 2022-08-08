@@ -23,6 +23,7 @@ import java.util.Optional;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long>, UserLifetime, UserQuery, UserUpdate {
 
+    @Override
     default Optional<User> findByKey(Long id) {
         return findById(id).map(User.class::cast);
     }
