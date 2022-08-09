@@ -37,7 +37,10 @@ public interface UserRepository extends JpaRepository<UserEntity, Long>, UserLif
     @Transactional
     @Override
     default User update(User user) {
-        return this.findById(user.getId()).map(usr -> usr.setUserData(user)).orElse(null);
+        return this.findById(user.getId())
+                   .map(usr -> usr.setUserData(user))
+                   .map(this::save)
+                   .orElse(null);
     }
 
     @Transactional

@@ -41,6 +41,15 @@ public class UserEntity implements MutableUser {
                 null);
     }
 
+    public UserEntity setUserData(UserData userData) {
+        this.setTitle(userData.getTitle());
+        this.setFirstName(userData.getFirstName());
+        this.setSurname(userData.getSurname());
+        this.setDob(userData.getDob());
+        this.setJobTitle(userData.getJobTitle());
+        return this;
+    }
+
     @PrePersist
     void createStamp() {
         this.createStamp = LocalDateTime.now(ZoneOffset.UTC);

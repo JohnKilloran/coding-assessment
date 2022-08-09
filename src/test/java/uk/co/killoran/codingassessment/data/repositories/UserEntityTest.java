@@ -25,4 +25,15 @@ class UserEntityTest {
         assertEquals(userData.getDob(), user.getDob());
         assertEquals(userData.getJobTitle(), user.getJobTitle());
     }
+
+    @Test
+    void userDataCreateStamp() {
+        UserEntity entity = new UserEntity(null, "Mr", "John", "Killoran",
+                LocalDate.of(1970,1,1),
+                "Developer", null);
+        assertNull(entity.getCreateStamp());
+        LocalDateTime now = LocalDateTime.now(ZoneOffset.UTC);
+        entity.createStamp();
+        assertTrue(now.isBefore(entity.getCreateStamp()) || now.isEqual(entity.getCreateStamp()));
+    }
 }

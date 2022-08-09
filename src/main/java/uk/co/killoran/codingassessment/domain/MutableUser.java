@@ -15,12 +15,5 @@ public interface MutableUser extends User {
     void setJobTitle(String jobTitle);
     void setCreateStamp(LocalDateTime createStamp);
 
-    default MutableUser setUserData(UserData user) {
-        this.setTitle(user.getTitle());
-        this.setFirstName(user.getFirstName());
-        this.setSurname(user.getSurname());
-        this.setDob(user.getDob());
-        this.setJobTitle(user.getJobTitle());
-        return this;
-    }
+    MutableUser setUserData(UserData user);
 }

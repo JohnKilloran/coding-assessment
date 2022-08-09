@@ -18,4 +18,13 @@ public class UserImpl implements User, MutableUser {
     private LocalDate dob;
     private String jobTitle;
     private LocalDateTime createStamp;
+
+    public UserImpl setUserData(UserData user) {
+        this.setTitle(user.getTitle());
+        this.setFirstName(user.getFirstName());
+        this.setSurname(user.getSurname());
+        this.setDob(user.getDob());
+        this.setJobTitle(user.getJobTitle());
+        return this;
+    }
 }
