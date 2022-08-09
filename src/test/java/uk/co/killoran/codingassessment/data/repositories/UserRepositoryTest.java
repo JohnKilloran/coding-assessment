@@ -1,6 +1,8 @@
 package uk.co.killoran.codingassessment.data.repositories;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentCaptor;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import uk.co.killoran.codingassessment.domain.User;
 import uk.co.killoran.codingassessment.domain.UserData;
@@ -78,5 +80,13 @@ class UserRepositoryTest {
 
     @Test
     void delete() {
+        Long id = 1L;
+        UserEntity entity = new UserEntity(id, "Mr", "John", "Killoran",
+                LocalDate.of(1970,1,1),
+                "Developer", LocalDateTime.now(ZoneOffset.UTC));
+        UserRepository repository = Mockito.mock(UserRepository.class);
+        Mockito.doCallRealMethod().when(repository).delete(any(User.class));
+        Mockito.doNothing().when(repository).deleteById(any(Long.class));
+        assertDoesNotThrow(() -> repository.delete(entity));
     }
 }
